@@ -43,6 +43,8 @@ function TextForm(props) {
             rows="10"
             value={text}
             onChange={onChangeHandler}
+            cols="10"
+            wrap="hard"
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
@@ -66,7 +68,7 @@ function TextForm(props) {
         </p>
         <p>{0.008 * text.split(" ").length} minute read</p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p style={{wordWrap:"break-word"}}>{text}</p>
       </div>
     </>
   );
