@@ -8,9 +8,18 @@ import { useState } from "react";
 function App() {
   let name = "Rohi";
   const [mode, setMode] = useState("light")
+  const toggleMode = () => {
+    if (mode === "light") {
+      setMode("dark")
+      document.body.style.backgroundColor = "#042743"
+    } else {
+      setMode("light")
+      document.body.style.backgroundColor = "white"
+    }
+  }
   return (
     <>
-      <Navbar title={"The Title"} aboutText="About" mode={mode}/>
+      <Navbar title={"The Title"} aboutText="About" mode={mode} toggleMode={toggleMode}/>
       <div className="container my-2">
         <TextForm heading="Enter text to analyze here" mode={mode} />
         {/* <About /> */}

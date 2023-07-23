@@ -31,10 +31,13 @@ function TextForm(props) {
     let textValue = event.target.value;
     setText(textValue);
   };
-
+  let modeColor = props.mode === "dark" ? "white" : "black";
+  let modeBackgroundColor = props.mode === "dark" ? "grey" : "white";
+  let modeTextStyle = { color: modeColor };
+  let modeStyle = { color: modeColor, backgroundColor: modeBackgroundColor };
   return (
     <>
-      <div className="container">
+      <div className="container" style={modeTextStyle}>
         <div className="mb-3">
           <h1>{props.heading}</h1>
           <textarea
@@ -43,6 +46,7 @@ function TextForm(props) {
             rows="10"
             value={text}
             onChange={onChangeHandler}
+            style={modeStyle}
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
@@ -59,14 +63,14 @@ function TextForm(props) {
         </button>
       </div>
 
-      <div className="container my-3">
+      <div className="container my-3" style={modeTextStyle}>
         <h2>Your text summary</h2>
         <p>
           {text.split(" ").length} words and {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} minute read</p>
         <h2>Preview</h2>
-        <p style={{wordWrap:"break-word"}}>{text}</p>
+        <p style={{ wordWrap: "break-word" }}>{text.trim() ? text : "Enter something to preview it here"}</p>
       </div>
     </>
   );
