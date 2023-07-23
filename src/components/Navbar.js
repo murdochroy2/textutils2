@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary"  data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary"  data-bs-theme={`${props.mode}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
