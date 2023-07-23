@@ -43,8 +43,6 @@ function TextForm(props) {
             rows="10"
             value={text}
             onChange={onChangeHandler}
-            cols="10"
-            wrap="hard"
           ></textarea>
         </div>
         <button className="btn btn-primary mx-1" onClick={handleUpClick}>
