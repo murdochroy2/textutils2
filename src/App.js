@@ -8,26 +8,31 @@ import Alert from "./components/Alert";
 
 function App() {
   let name = "Rohi";
-  const [mode, setMode] = useState("light")
+  const [mode, setMode] = useState("light");
   const toggleMode = () => {
     if (mode === "light") {
-      setMode("dark")
-      document.body.style.backgroundColor = "#042743"
-      setAlert({type:"success", message:"Dark mode enabled"})
+      setMode("dark");
+      document.body.style.backgroundColor = "#042743";
+      showAlert("success", "Dark mode enabled");
     } else {
-      setMode("light")
-      document.body.style.backgroundColor = "white"
-      setAlert({type:"success", message:"Dark mode disabled"})
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("success", "Dark mode disabled");
     }
-  }
-  const [alert, setAlert] = useState(null)
-  const showAlert = (message, type) => {
-
-  }
+  };
+  const [alert, setAlert] = useState(null);
+  const showAlert = (type, message) => {
+    setAlert({ type: type, message: message });
+  };
   return (
     <>
-      <Navbar title={"The Title"} aboutText="About" mode={mode} toggleMode={toggleMode}/>
-      <Alert showAlert={showAlert} alert={alert}/>
+      <Navbar
+        title={"The Title"}
+        aboutText="About"
+        mode={mode}
+        toggleMode={toggleMode}
+      />
+      <Alert alert={alert} />
       <div className="container my-2">
         <TextForm heading="Enter text to analyze here" mode={mode} />
         {/* <About /> */}
