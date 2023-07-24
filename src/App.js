@@ -13,11 +13,11 @@ function App() {
     if (mode === "light") {
       setMode("dark")
       document.body.style.backgroundColor = "#042743"
-      setAlert("success", "Dark mode enabled")
+      setAlert({type:"success", message:"Dark mode enabled"})
     } else {
       setMode("light")
       document.body.style.backgroundColor = "white"
-      setAlert("success", "Dark mode disabled")
+      setAlert({type:"success", message:"Dark mode disabled"})
     }
   }
   const [alert, setAlert] = useState(null)
