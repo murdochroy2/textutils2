@@ -7,19 +7,17 @@ function TextForm(props) {
     // console.log("Up clicked");
     let upperText = text.toUpperCase();
     setText(upperText);
-    props.showAlert("success", "Converted to Uppercase")
+    props.showAlert("success", "Converted to Uppercase");
   };
   const handleLoClick = () => {
     // console.log("Up clicked");
     let lowerText = text.toLowerCase();
     setText(lowerText);
-    props.showAlert("success", "Converted to Lowercase")
-
+    props.showAlert("success", "Converted to Lowercase");
   };
   const handleClear = () => {
     setText("");
-    props.showAlert("success", "Text cleared")
-
+    props.showAlert("success", "Text cleared");
   };
   const handleAlternateCase = () => {
     let alternatingText = "";
@@ -28,7 +26,7 @@ function TextForm(props) {
         index % 2 === 0 ? character.toUpperCase() : character.toLowerCase();
     });
     setText(alternatingText);
-    props.showAlert("success", "Converted to Alternate Case")
+    props.showAlert("success", "Converted to Alternate Case");
   };
 
   const onChangeHandler = (event) => {
@@ -71,11 +69,13 @@ function TextForm(props) {
       <div className="container my-3" style={modeTextStyle}>
         <h2>Your text summary</h2>
         <p>
-          {text.split(" ").length} words and {text.length} characters
+          {text ? text.split(/\s+/).length : 0} words and {text.length} characters
         </p>
         <p>{0.008 * text.split(" ").length} minute read</p>
         <h2>Preview</h2>
-        <p style={{ wordWrap: "break-word" }}>{text.trim() ? text : "Enter something to preview it here"}</p>
+        <p style={{ wordWrap: "break-word" }}>
+          {text.trim() ? text : "Enter something to preview it here"}
+        </p>
       </div>
     </>
   );
