@@ -23,6 +23,9 @@ function App() {
   const [alert, setAlert] = useState(null);
   const showAlert = (type, message) => {
     setAlert({ type: type, message: message });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
   };
   return (
     <>
@@ -34,7 +37,11 @@ function App() {
       />
       <Alert alert={alert} />
       <div className="container my-2">
-        <TextForm heading="Enter text to analyze here" mode={mode} />
+        <TextForm
+          heading="Enter text to analyze here"
+          mode={mode}
+          showAlert={showAlert}
+        />
         {/* <About /> */}
       </div>
     </>

@@ -7,23 +7,28 @@ function TextForm(props) {
     // console.log("Up clicked");
     let upperText = text.toUpperCase();
     setText(upperText);
+    props.showAlert("success", "Converted to Uppercase")
   };
   const handleLoClick = () => {
     // console.log("Up clicked");
     let lowerText = text.toLowerCase();
     setText(lowerText);
+    props.showAlert("success", "Converted to Lowercase")
+
   };
   const handleClear = () => {
     setText("");
+    props.showAlert("success", "Text cleared")
+
   };
   const handleAlternateCase = () => {
     let alternatingText = "";
     text.split("").forEach((character, index) => {
       alternatingText +=
-        index % 2 == 0 ? character.toUpperCase() : character.toLowerCase();
+        index % 2 === 0 ? character.toUpperCase() : character.toLowerCase();
     });
-
     setText(alternatingText);
+    props.showAlert("success", "Converted to Alternate Case")
   };
 
   const onChangeHandler = (event) => {
