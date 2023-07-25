@@ -9,15 +9,39 @@ import Alert from "./components/Alert";
 function App() {
   let name = "Rohi";
   const [mode, setMode] = useState("light");
-  const toggleMode = () => {
-    if (mode === "light") {
+  const toggleMode = (event) => {
+    if (event.target.checked) {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
       showAlert("success", "Dark mode enabled");
-    } else {
+    } else if (mode === "dark") {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("success", "Dark mode disabled");
+    }
+  };
+  const toggleRedMode = (event) => {
+    console.log("Current Mode is", mode);
+    if (event.target.checked) {
+      setMode("red");
+      document.body.style.backgroundColor = "pink";
+      showAlert("success", "Red mode enabled");
+    } else if (mode === "red") {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("success", "Red mode disabled");
+    }
+  };
+  const toggleGreenMode = (event) => {
+    console.log("Current Mode is", mode);
+    if (event.target.checked) {
+      setMode("green");
+      document.body.style.backgroundColor = "green";
+      showAlert("success", "Green mode enabled");
+    } else if (mode === "green") {
+      setMode("light");
+      document.body.style.backgroundColor = "white";
+      showAlert("success", "Green mode disabled");
     }
   };
   const [alert, setAlert] = useState(null);
@@ -34,6 +58,8 @@ function App() {
         aboutText="About"
         mode={mode}
         toggleMode={toggleMode}
+        toggleRedMode={toggleRedMode}
+        toggleGreenMode={toggleGreenMode}
       />
       <Alert alert={alert} />
       <div className="container my-2">

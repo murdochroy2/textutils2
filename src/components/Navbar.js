@@ -50,6 +50,38 @@ function Navbar(props) {
               Dark
             </label>
           </div>
+          {/* Red mode */}
+          <div className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light":"dark"}`}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onChange={props.toggleRedMode}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Red
+            </label>
+          </div>
+          {/* Green mode */}
+          <div className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light":"dark"}`}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onChange={props.toggleGreenMode}
+            />
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault"
+            >
+              Green
+            </label>
+          </div>
           <form className="d-flex" role="search">
             <input
               className="form-control me-2"
