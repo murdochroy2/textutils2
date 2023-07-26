@@ -69,9 +69,9 @@ function TextForm(props) {
       <div className="container my-3" style={modeTextStyle}>
         <h2>Your text summary</h2>
         <p>
-          {text ? text.split(/\s+/).length : 0} words and {text.length} characters
+          {text ? text.split(/\s/).filter(word => word).length : 0} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} minute read</p>
+        <p>{0.008 * text.trim().length} minute read</p>
         <h2>Preview</h2>
         <p style={{ wordWrap: "break-word" }}>
           {text.trim() ? text : "Enter something to preview it here"}
