@@ -14,6 +14,8 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
       showAlert("success", "Dark mode enabled");
+      let titlePrefix = document.title.slice(0, document.title.indexOf("|"))
+      document.title = `${titlePrefix} | Dark Mode`
     } else if (mode === "dark") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -21,11 +23,12 @@ function App() {
     }
   };
   const toggleRedMode = (event) => {
-    console.log("Current Mode is", mode);
     if (event.target.checked) {
       setMode("red");
       document.body.style.backgroundColor = "pink";
       showAlert("success", "Red mode enabled");
+      let titlePrefix = document.title.slice(0, document.title.indexOf("|"))
+      document.title = `${titlePrefix} | Red Mode`
     } else if (mode === "red") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -33,11 +36,12 @@ function App() {
     }
   };
   const toggleGreenMode = (event) => {
-    console.log("Current Mode is", mode);
     if (event.target.checked) {
       setMode("green");
       document.body.style.backgroundColor = "green";
       showAlert("success", "Green mode enabled");
+      let titlePrefix = document.title.slice(0, document.title.indexOf("|"))
+      document.title = `${titlePrefix} | Green Mode`
     } else if (mode === "green") {
       setMode("light");
       document.body.style.backgroundColor = "white";
