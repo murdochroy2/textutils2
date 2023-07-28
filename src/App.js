@@ -5,6 +5,7 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import { useState } from "react";
 import Alert from "./components/Alert";
+import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 
 function App() {
   let name = "Rohi";
@@ -14,8 +15,8 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
       showAlert("success", "Dark mode enabled");
-      let titlePrefix = document.title.slice(0, document.title.indexOf("|"))
-      document.title = `${titlePrefix} | Dark Mode`
+      let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
+      document.title = `${titlePrefix} | Dark Mode`;
     } else if (mode === "dark") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -27,8 +28,8 @@ function App() {
       setMode("red");
       document.body.style.backgroundColor = "pink";
       showAlert("success", "Red mode enabled");
-      let titlePrefix = document.title.slice(0, document.title.indexOf("|"))
-      document.title = `${titlePrefix} | Red Mode`
+      let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
+      document.title = `${titlePrefix} | Red Mode`;
     } else if (mode === "red") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -40,8 +41,8 @@ function App() {
       setMode("green");
       document.body.style.backgroundColor = "green";
       showAlert("success", "Green mode enabled");
-      let titlePrefix = document.title.slice(0, document.title.indexOf("|"))
-      document.title = `${titlePrefix} | Green Mode`
+      let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
+      document.title = `${titlePrefix} | Green Mode`;
     } else if (mode === "green") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -57,23 +58,33 @@ function App() {
   };
   return (
     <>
-      <Navbar
-        title={"The Title"}
-        aboutText="About"
-        mode={mode}
-        toggleMode={toggleMode}
-        toggleRedMode={toggleRedMode}
-        toggleGreenMode={toggleGreenMode}
-      />
-      <Alert alert={alert} />
-      <div className="container my-2">
-        <TextForm
-          heading="Enter text to analyze here"
+      <Router>
+        <Navbar
+          title={"Tutils"}
+          aboutText="About"
           mode={mode}
-          showAlert={showAlert}
+          toggleMode={toggleMode}
+          toggleRedMode={toggleRedMode}
+          toggleGreenMode={toggleGreenMode}
         />
-        {/* <About /> */}
-      </div>
+        <Alert alert={alert} />
+        <div className="container my-2">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  heading="Enter text to analyze here"
+                  mode={mode}
+                  showAlert={showAlert}
+                />
+              }
+            ></Route>
+
+            <Route path="/about" element={<About />}></Route>
+          </Routes>
+        </div>
+      </Router>
     </>
   );
 }
