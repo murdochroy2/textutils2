@@ -52,10 +52,10 @@ function TextForm(props) {
             style={modeStyle}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button className="btn btn-primary mx-1" onClick={handleUpClick} disabled={!text.length}>
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick}>
+        <button className="btn btn-primary mx-1" onClick={handleLoClick} disabled={!text.length}>
           Convert to Lowercase
         </button>
         <button className="btn btn-primary mx-1" onClick={handleClear}>
@@ -71,7 +71,7 @@ function TextForm(props) {
         <p>
           {text ? text.split(/\s/).filter(word => word).length : 0} words and {text.length} characters
         </p>
-        <p>{0.008 * text.trim().length} minute read</p>
+        <p>{0.008 * text.split(/\s/).filter(word => word).length} minute read</p>
         <h2>Preview</h2>
         <p style={{ wordWrap: "break-word" }}>
           {text.trim() ? text : "Enter something to preview it here"}
