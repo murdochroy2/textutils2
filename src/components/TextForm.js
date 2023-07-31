@@ -28,6 +28,13 @@ function TextForm(props) {
     setText(alternatingText);
     props.showAlert("success", "Converted to Alternate Case");
   };
+  const handleCopy = () => {
+    let textBox = document.getElementById("text-box");
+    textBox.select();
+    let textBoxValue = textBox.value;
+    document.getSelection().removeAllRanges()
+    navigator.clipboard.writeText(textBoxValue);
+  };
 
   const onChangeHandler = (event) => {
     // console.log(event.target.value);
@@ -45,17 +52,25 @@ function TextForm(props) {
           <h1>{props.heading}</h1>
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            id="text-box"
             rows="10"
             value={text}
             onChange={onChangeHandler}
             style={modeStyle}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick} disabled={!text.length}>
+        <button
+          className="btn btn-primary mx-1"
+          onClick={handleUpClick}
+          disabled={!text.length}
+        >
           Convert to Uppercase
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick} disabled={!text.length}>
+        <button
+          className="btn btn-primary mx-1"
+          onClick={handleLoClick}
+          disabled={!text.length}
+        >
           Convert to Lowercase
         </button>
         <button className="btn btn-primary mx-1" onClick={handleClear}>
@@ -64,14 +79,20 @@ function TextForm(props) {
         <button className="btn btn-primary mx-1" onClick={handleAlternateCase}>
           Convert to aLtErNaTeCaSe
         </button>
+        <button className="btn btn-primary mx-1" onClick={handleCopy}>
+          Copy Text
+        </button>
       </div>
 
       <div className="container my-3" style={modeTextStyle}>
         <h2>Your text summary</h2>
         <p>
-          {text ? text.split(/\s/).filter(word => word).length : 0} words and {text.length} characters
+          {text ? text.split(/\s/).filter((word) => word).length : 0} words and{" "}
+          {text.length} characters
         </p>
-        <p>{0.008 * text.split(/\s/).filter(word => word).length} minute read</p>
+        <p>
+          {0.008 * text.split(/\s/).filter((word) => word).length} minute read
+        </p>
         <h2>Preview</h2>
         <p style={{ wordWrap: "break-word" }}>
           {text.trim() ? text : "Enter something to preview it here"}
