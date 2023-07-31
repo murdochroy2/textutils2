@@ -16,7 +16,7 @@ function App() {
       document.body.style.backgroundColor = "#042743";
       showAlert("success", "Dark mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
-      document.title = `${titlePrefix} | Dark Mode`;
+      // document.title = `${titlePrefix} | Dark Mode`;
     } else if (mode === "dark") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -29,7 +29,7 @@ function App() {
       document.body.style.backgroundColor = "pink";
       showAlert("success", "Red mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
-      document.title = `${titlePrefix} | Red Mode`;
+      // document.title = `${titlePrefix} | Red Mode`;
     } else if (mode === "red") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -42,7 +42,7 @@ function App() {
       document.body.style.backgroundColor = "green";
       showAlert("success", "Green mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
-      document.title = `${titlePrefix} | Green Mode`;
+      // document.title = `${titlePrefix} | Green Mode`;
     } else if (mode === "green") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -54,7 +54,7 @@ function App() {
     setAlert({ type: type, message: message });
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 1000);
   };
   return (
     <>
@@ -74,14 +74,14 @@ function App() {
               path="/"
               element={
                 <TextForm
-                  heading="Enter text to analyze here"
+                  heading="Try TUtils - Word Counter, Character Counter, Remove extra spaces and much more"
                   mode={mode}
                   showAlert={showAlert}
                 />
               }
             ></Route>
 
-            <Route path="/about" element={<About />}></Route>
+            <Route path="/about" element={<About mode={mode}/>}></Route>
           </Routes>
         </div>
       </Router>

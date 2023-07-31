@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function About() {
+export default function About(props) {
   let dark = {
     backgroundColor: "black",
     color: "white",
@@ -11,16 +11,17 @@ export default function About() {
     color: "black",
     border: "1px solid black",
   };
-  const [dispMode, setDispMode] = useState(light);
-  const [modeBtn, setModeBtn] = useState("Dark");
+  let dispMode = props.mode === "dark" ? dark : light
+  // const [dispMode, setDispMode] = useState(props.mode === "dark" ? dark : light);
+  const [modeBtn, setModeBtn] = useState(props.mode === "dark" ? "Dark" : "Light");
   const toggleMode = () => {
-    if (dispMode.backgroundColor === "white") {
-      setDispMode(dark);
-      setModeBtn("Light");
-    } else {
-      setDispMode(light);
-      setModeBtn("Dark");
-    }
+  if (props.mode === "light") {
+    // setDispMode(dark);
+    setModeBtn("Light");
+  } else {
+    // setDispMode(light);
+    setModeBtn("Dark");
+  }
   };
   return (
     <div className="container" style={dispMode}>
@@ -121,7 +122,10 @@ export default function About() {
         </div>
       </div>
       <div className="container my-3">
-        <button type="button" className="btn btn-primary" onClick={toggleMode}>
+        <button
+          type="button"
+          className="btn btn-primary" /*onClick={toggleMode} */
+        >
           {modeBtn}
         </button>
       </div>
