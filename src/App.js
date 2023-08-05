@@ -10,7 +10,13 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 function App() {
   let name = "Rohi";
   const [mode, setMode] = useState("light");
-  const toggleMode = (event) => {
+  const removeBodyClasses = () => {
+    let appliedClasses = ["dark", "light", "warning", "danger", "success", "info"]
+    appliedClasses.forEach(className=>{document.body.classList.remove(`bg-${className}`)})
+  }
+  const toggleMode = (event, colorClass = "") => {
+    console.log(colorClass);
+    removeBodyClasses();
     if (event.target.checked) {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
@@ -21,6 +27,9 @@ function App() {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("success", "Dark mode disabled");
+    }
+    if (colorClass) {
+      document.body.classList.add(`bg-${colorClass}`)
     }
   };
   const toggleRedMode = (event) => {
@@ -69,6 +78,20 @@ function App() {
         />
         <Alert alert={alert} />
         <div className="container my-2">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  heading="Try TUtils - Word Counter, Character Counter, Remove extra spaces and much more"
+                  mode={mode}
+                  showAlert={showAlert}
+                />
+              }
+            ></Route>
+
+            <Route path="/about" element={<About mode={mode} />}></Route>
+          </Routes>
           <>
             <TextForm
               heading="Try TUtils - Word Counter, Character Counter, Remove extra spaces and much more"
