@@ -29,11 +29,8 @@ function TextForm(props) {
     props.showAlert("success", "Converted to Alternate Case");
   };
   const handleCopy = () => {
-    let textBox = document.getElementById("text-box");
-    textBox.select();
-    let textBoxValue = textBox.value;
-    document.getSelection().removeAllRanges()
-    navigator.clipboard.writeText(textBoxValue);
+    navigator.clipboard.writeText(text);
+    props.showAlert("Copied to Clipboard! Success")
   };
 
   const onChangeHandler = (event) => {

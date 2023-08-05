@@ -36,10 +36,18 @@ function Navbar(props) {
               </Link>
             </li>
           </ul>
+          <div className="d-flex me-2">
+            <button className="btn btn-warning rounded me-2 rounded-4" style={{ height: "1.5rem", width: "1.5rem", cursor: "pointer" }} onClick={(event) => props.toggleMode(event, "warning")}></button>
+          </div>
+          <div className="d-flex me-2">
+            <button className="btn btn-info rounded me-2 rounded-4" style={{ height: "1.5rem", width: "1.5rem", cursor: "pointer" }} onClick={(event) => props.toggleMode(event, "info")}></button>
+          </div>
+          <div className="d-flex me-2">
+            <button className="btn btn-danger rounded me-2 rounded-4" style={{ height: "1.5rem", width: "1.5rem", cursor: "pointer" }} onClick={(event) => props.toggleMode(event, "danger")}></button>
+          </div>
           <div
-            className={`form-check form-switch me-2 text-${
-              props.mode === "dark" ? "light" : "dark"
-            }`}
+            className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light" : "dark"
+              }`}
           >
             <input
               className="form-check-input"
@@ -57,9 +65,8 @@ function Navbar(props) {
           </div>
           {/* Red mode */}
           <div
-            className={`form-check form-switch me-2 text-${
-              props.mode === "dark" ? "light" : "dark"
-            }`}
+            className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light" : "dark"
+              }`}
           >
             <input
               className="form-check-input"
@@ -77,9 +84,8 @@ function Navbar(props) {
           </div>
           {/* Green mode */}
           <div
-            className={`form-check form-switch me-2 text-${
-              props.mode === "dark" ? "light" : "dark"
-            }`}
+            className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light" : "dark"
+              }`}
           >
             <input
               className="form-check-input"

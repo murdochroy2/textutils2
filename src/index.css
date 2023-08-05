@@ -15,3 +15,7 @@ code {
 .navbar {
   data-bs-theme:"dark";
 }
+
+.accordion-button::after {
+  filter: invert(1);
+}
