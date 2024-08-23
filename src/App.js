@@ -35,7 +35,7 @@ function App() {
   const toggleRedMode = (event) => {
     if (event.target.checked) {
       setMode("red");
-      document.body.style.backgroundColor = "pink";
+      document.body.style.backgroundColor = "#F2C464";
       showAlert("success", "Red mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
       // document.title = `${titlePrefix} | Red Mode`;
@@ -83,7 +83,7 @@ function App() {
               path="/"
               element={
                 <TextForm
-                  heading="Try TUtils - Word Counter, Character Counter, Remove extra spaces and much more"
+                  heading="TUtils - Count words, Characters, Remove spaces and so much more"
                   mode={mode}
                   showAlert={showAlert}
                 />
