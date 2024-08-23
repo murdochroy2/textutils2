@@ -59,7 +59,7 @@ function TextForm(props) {
           ></textarea>
         </div>
         <div className="d-flex justify-content-center">
-          <div className="btn-group w-75" role="group" aria-label="Basic example">
+          <div className="btn-group w-100" role="group" aria-label="Basic example">
             <button
               className="btn btn-primary flex-fill"
               onClick={handleUpClick}
