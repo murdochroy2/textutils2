@@ -5,7 +5,7 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import { useState } from "react";
 import Alert from "./components/Alert";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Link, Routes } from "react-router-dom";
 
 function App() {
   let name = "Rohi";
