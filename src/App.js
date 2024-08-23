@@ -5,31 +5,40 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import { useState } from "react";
 import Alert from "./components/Alert";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Link, Routes } from "react-router-dom";
 
 function App() {
   let name = "Rohi";
   const [mode, setMode] = useState("light");
-  const toggleMode = (event) => {
+  const removeBodyClasses = () => {
+    let appliedClasses = ["dark", "light", "warning", "danger", "success", "info"]
+    appliedClasses.forEach(className=>{document.body.classList.remove(`bg-${className}`)})
+  }
+  const toggleMode = (event, colorClass = "") => {
+    console.log(colorClass);
+    removeBodyClasses();
     if (event.target.checked) {
       setMode("dark");
       document.body.style.backgroundColor = "#042743";
       showAlert("success", "Dark mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
-      document.title = `${titlePrefix} | Dark Mode`;
+      // document.title = `${titlePrefix} | Dark Mode`;
     } else if (mode === "dark") {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("success", "Dark mode disabled");
     }
+    if (colorClass) {
+      document.body.classList.add(`bg-${colorClass}`)
+    }
   };
   const toggleRedMode = (event) => {
     if (event.target.checked) {
       setMode("red");
-      document.body.style.backgroundColor = "pink";
+      document.body.style.backgroundColor = "#F2C464";
       showAlert("success", "Red mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
-      document.title = `${titlePrefix} | Red Mode`;
+      // document.title = `${titlePrefix} | Red Mode`;
     } else if (mode === "red") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -42,7 +51,7 @@ function App() {
       document.body.style.backgroundColor = "green";
       showAlert("success", "Green mode enabled");
       let titlePrefix = document.title.slice(0, document.title.indexOf("|"));
-      document.title = `${titlePrefix} | Green Mode`;
+      // document.title = `${titlePrefix} | Green Mode`;
     } else if (mode === "green") {
       setMode("light");
       document.body.style.backgroundColor = "white";
@@ -54,7 +63,7 @@ function App() {
     setAlert({ type: type, message: message });
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 1000);
   };
   return (
     <>
@@ -69,13 +78,27 @@ function App() {
         />
         <Alert alert={alert} />
         <div className="container my-2">
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  heading="TUtils - Count words, Characters, Remove spaces and so much more"
+                  mode={mode}
+                  showAlert={showAlert}
+                />
+              }
+            ></Route>
+
+            <Route path="/about" element={<About mode={mode} />}></Route>
+          </Routes>
           <>
             <TextForm
-              heading="Enter text to analyze here"
+              heading="Try TUtils - Word Counter, Character Counter, Remove extra spaces and much more"
               mode={mode}
               showAlert={showAlert}
             />
-            {/* <About /> */}
+            {/* <About mode={mode}/> */}
           </>
         </div>
       </>

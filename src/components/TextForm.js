@@ -28,6 +28,10 @@ function TextForm(props) {
     setText(alternatingText);
     props.showAlert("success", "Converted to Alternate Case");
   };
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    props.showAlert("success", "Copied to Clipboard!")
+  };
 
   const onChangeHandler = (event) => {
     // console.log(event.target.value);
@@ -38,6 +42,8 @@ function TextForm(props) {
   let modeBackgroundColor = props.mode === "dark" ? "grey" : "white";
   let modeTextStyle = { color: modeColor };
   let modeStyle = { color: modeColor, backgroundColor: modeBackgroundColor };
+  let wordCount = 0.008 * text.split(/\s/).filter((word) => word).length;
+  wordCount = wordCount.toFixed(2)
   return (
     <>
       <div className="container" style={modeTextStyle}>
@@ -45,33 +51,52 @@ function TextForm(props) {
           <h1>{props.heading}</h1>
           <textarea
             className="form-control"
-            id="exampleFormControlTextarea1"
+            id="text-box"
             rows="10"
             value={text}
             onChange={onChangeHandler}
             style={modeStyle}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
-          Convert to Uppercase
-        </button>
-        <button className="btn btn-primary mx-1" onClick={handleLoClick}>
-          Convert to Lowercase
-        </button>
-        <button className="btn btn-primary mx-1" onClick={handleClear}>
-          Clear Text
-        </button>
-        <button className="btn btn-primary mx-1" onClick={handleAlternateCase}>
-          Convert to aLtErNaTeCaSe
-        </button>
+        <div className="d-flex justify-content-center">
+          <div className="btn-group w-100" role="group" aria-label="Basic example">
+            <button
+              className="btn btn-primary flex-fill"
+              onClick={handleUpClick}
+              disabled={!text.length}
+            >
+              Convert to Uppercase
+            </button>
+            <button
+              className="btn btn-primary flex-fill"
+              onClick={handleLoClick}
+              disabled={!text.length}
+            >
+              Convert to Lowercase
+            </button>
+            <button className="btn btn-primary flex-fill" onClick={handleClear}>
+              Clear Text
+            </button>
+            <button className="btn btn-primary flex-fill" onClick={handleAlternateCase}>
+              Convert to AlTeRnAte case
+            </button>
+            <button className="btn btn-primary flex-fill" onClick={handleCopy}>
+              Copy Text
+            </button>
+            </div>
+        </div>
       </div>
 
       <div className="container my-3" style={modeTextStyle}>
-        <h2>Your text summary</h2>
+        <h2>Text summary</h2>
         <p>
-          {text ? text.split(/\s/).filter(word => word).length : 0} words and {text.length} characters
+          {text ? text.split(/\s/).filter((word) => word).length : 0} words and{" "}
+          {text.length} characters<br></br>
+          {wordCount} minute read
         </p>
-        <p>{0.008 * text.trim().length} minute read</p>
+        <p>
+          
+        </p>
         <h2>Preview</h2>
         <p style={{ wordWrap: "break-word" }}>
           {text.trim() ? text : "Enter something to preview it here"}

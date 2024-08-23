@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar(props) {
+  const currentLoation = useLocation();
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"
@@ -26,20 +27,19 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className={`nav-link ${currentLoation.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className={`nav-link ${currentLoation.pathname === "/about" ? "active" : ""}`} to="/about">
                 {props.aboutText}
-              </a>
+              </Link>
             </li>
           </ul>
           <div
-            className={`form-check form-switch me-2 text-${
-              props.mode === "dark" ? "light" : "dark"
-            }`}
+            className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light" : "dark"
+              }`}
           >
             <input
               className="form-check-input"
@@ -52,14 +52,13 @@ function Navbar(props) {
               className="form-check-label"
               htmlFor="flexSwitchCheckDefault"
             >
-              Dark
+              Dark Mode
             </label>
           </div>
           {/* Red mode */}
-          <div
-            className={`form-check form-switch me-2 text-${
-              props.mode === "dark" ? "light" : "dark"
-            }`}
+          {/* <div
+            className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light" : "dark"
+              }`}
           >
             <input
               className="form-check-input"
@@ -74,12 +73,11 @@ function Navbar(props) {
             >
               Red
             </label>
-          </div>
+          </div> */}
           {/* Green mode */}
-          <div
-            className={`form-check form-switch me-2 text-${
-              props.mode === "dark" ? "light" : "dark"
-            }`}
+          {/* <div
+            className={`form-check form-switch me-2 text-${props.mode === "dark" ? "light" : "dark"
+              }`}
           >
             <input
               className="form-check-input"
@@ -94,18 +92,7 @@ function Navbar(props) {
             >
               Green
             </label>
-          </div>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-primary" type="submit">
-              Search
-            </button>
-          </form>
+          </div> */}
         </div>
       </div>
     </nav>
