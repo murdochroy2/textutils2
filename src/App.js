@@ -18,32 +18,36 @@ function App() {
   const toggleMode = (e) => {
     if (e.target.checked) {
       setMode("dark");
-      document.body.style.backgroundColor = "#0d1117";
+      document.body.classList.add("dark-mode");
     } else {
       setMode("light");
-      document.body.style.backgroundColor = "";
+      document.body.classList.remove("dark-mode");
     }
     showAlert("success", e.target.checked ? "Dark mode enabled" : "Light mode enabled");
   };
+
+  const isDark = mode === "dark";
 
   return (
     <Router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggleMode} />
       <Alert alert={alert} />
-      <div className="container-fluid px-3 px-md-4">
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <TextForm
-                heading="TextUtils — All-in-One Text Manipulation Toolkit"
-                mode={mode}
-                showAlert={showAlert}
-              />
-            }
-          />
-          <Route path="/about" element={<About mode={mode} />} />
-        </Routes>
+      <div className="container-fluid px-3 px-md-4 py-4">
+        <div className={`content-card${isDark ? " dark" : ""}`} style={{ maxWidth: 1040, margin: "0 auto" }}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <TextForm
+                  heading="TextUtils — All-in-One Text Manipulation Toolkit"
+                  mode={mode}
+                  showAlert={showAlert}
+                />
+              }
+            />
+            <Route path="/about" element={<About mode={mode} />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

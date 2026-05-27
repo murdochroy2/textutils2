@@ -8,14 +8,17 @@ function Navbar({ title, mode, toggleMode }) {
   return (
     <nav
       className="navbar navbar-expand-lg sticky-top"
-      data-bs-theme={isDark ? "dark" : "light"}
+      data-bs-theme="dark"
       style={{
-        backgroundColor: isDark ? "#161b22" : "#ffffff",
-        borderBottom: `1px solid ${isDark ? "#30363d" : "#d0d7de"}`,
+        background: isDark
+          ? "linear-gradient(90deg, #1e1b4b 0%, #312e81 100%)"
+          : "linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%)",
+        borderBottom: "none",
+        boxShadow: "0 2px 16px rgba(79, 70, 229, 0.35)",
       }}
     >
       <div className="container-fluid px-3 px-md-4">
-        <Link className="navbar-brand fw-bold" to="/" style={{ color: isDark ? "#58a6ff" : "#0969da" }}>
+        <Link className="navbar-brand fw-bold" to="/" style={{ color: "#fff", letterSpacing: "0.02em" }}>
           {title}
         </Link>
 
@@ -52,7 +55,7 @@ function Navbar({ title, mode, toggleMode }) {
           </ul>
 
           <div className="d-flex align-items-center gap-2">
-            <span className="small" style={{ color: isDark ? "#8b949e" : "#57606a" }}>
+            <span className="small" style={{ color: "rgba(255,255,255,0.75)" }}>
               {isDark ? "Dark" : "Light"}
             </span>
             <div className="form-check form-switch mb-0">

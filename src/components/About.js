@@ -104,8 +104,8 @@ export default function About({ mode }) {
 
   return (
     <div
-      className="py-4"
-      style={{ color: isDark ? "#e6edf3" : "#1a1a2e", maxWidth: 1000, margin: "0 auto" }}
+      className="py-2"
+      style={{ color: isDark ? "#e6edf3" : "#1a1a2e" }}
     >
       <h4 className="fw-bold mb-1">About TextUtils</h4>
       <p className="text-secondary mb-4">

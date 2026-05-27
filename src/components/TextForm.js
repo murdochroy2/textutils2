@@ -505,8 +505,8 @@ function TextForm({ heading, mode, showAlert }) {
 
   return (
     <div
-      className="py-3"
-      style={{ color: isDark ? "#e6edf3" : "#1a1a2e", maxWidth: 1000, margin: "0 auto" }}
+      className="py-2"
+      style={{ color: isDark ? "#e6edf3" : "#1a1a2e" }}
     >
       <h4 className="mb-3 fw-bold">{heading}</h4>
 

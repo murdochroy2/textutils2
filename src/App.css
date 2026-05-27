@@ -1,5 +1,11 @@
 body {
-  transition: background-color 0.2s ease;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  background: linear-gradient(150deg, #eef2ff 0%, #f5f3ff 45%, #fdf4ff 100%);
+  min-height: 100vh;
+}
+
+body.dark-mode {
+  background: linear-gradient(150deg, #0d1117 0%, #0d0d1a 60%, #0d0a1a 100%);
 }
 
 .btn-sm {
@@ -8,4 +14,20 @@ body {
 
 .font-monospace {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace !important;
+}
+
+.content-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  box-shadow: 0 4px 32px rgba(99, 102, 241, 0.08);
+  padding: 1.5rem 2rem;
+}
+
+.content-card.dark {
+  background: rgba(22, 27, 34, 0.85);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
 }
