@@ -1,133 +1,152 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function About(props) {
-  let dark = {
-    backgroundColor: "black",
-    color: "white",
-    border: "1px solid white",
-  };
-  let light = {
-    backgroundColor: "white",
-    color: "black",
-    border: "1px solid black",
-  };
-  let dispMode = props.mode === "dark" ? dark : light
-  // const [dispMode, setDispMode] = useState(props.mode === "dark" ? dark : light);
-  const [modeBtn, setModeBtn] = useState(props.mode === "dark" ? "Dark" : "Light");
-  const toggleMode = () => {
-  if (props.mode === "light") {
-    // setDispMode(dark);
-    setModeBtn("Light");
-  } else {
-    // setDispMode(light);
-    setModeBtn("Dark");
-  }
-  };
+const FEATURES = [
+  {
+    title: "Case Conversion",
+    color: "primary",
+    items: [
+      "UPPERCASE / lowercase",
+      "Title Case / Sentence case",
+      "camelCase / PascalCase",
+      "snake_case / kebab-case",
+      "CONSTANT_CASE / dot.case",
+      "aLtErNaTe CaSe / Inverse Case",
+    ],
+  },
+  {
+    title: "Whitespace & Formatting",
+    color: "secondary",
+    items: [
+      "Remove extra / all spaces",
+      "Trim each line",
+      "Remove blank lines",
+      "Remove line breaks",
+      "Double spacing",
+      "Wrap text at 80 characters",
+    ],
+  },
+  {
+    title: "Lines",
+    color: "success",
+    items: [
+      "Sort A → Z / Z → A",
+      "Sort by line length",
+      "Reverse lines",
+      "Remove duplicate lines",
+      "Add / remove line numbers",
+      "Shuffle lines randomly",
+    ],
+  },
+  {
+    title: "Transformations",
+    color: "primary",
+    items: [
+      "Reverse text",
+      "Remove numbers / special chars",
+      "Strip punctuation",
+      "Remove HTML tags",
+      "Convert to URL slug",
+      "ROT13 cipher",
+      "Remove duplicate words",
+      "Add bullets / wrap in quotes",
+    ],
+  },
+  {
+    title: "Extract & Analyze",
+    color: "info",
+    items: [
+      "Extract emails",
+      "Extract URLs",
+      "Extract numbers",
+      "Extract phone numbers",
+      "Extract hashtags & mentions",
+      "Word frequency analysis",
+      "Character frequency analysis",
+    ],
+  },
+  {
+    title: "Encode / Decode",
+    color: "dark",
+    items: [
+      "Base64 encode / decode",
+      "URL encode / decode",
+      "HTML entity encode / decode",
+    ],
+  },
+  {
+    title: "Find & Replace",
+    color: "danger",
+    items: [
+      "Plain-text find & replace",
+      "Regex-powered find & replace",
+    ],
+  },
+  {
+    title: "Prefix & Suffix",
+    color: "warning",
+    items: ["Add custom prefix/suffix to every line"],
+  },
+  {
+    title: "Generate",
+    color: "secondary",
+    items: [
+      "Lorem ipsum (1–5 paragraphs)",
+      "Repeat text N times",
+    ],
+  },
+];
+
+export default function About({ mode }) {
+  const isDark = mode === "dark";
+  const cardStyle = isDark
+    ? { backgroundColor: "#161b22", borderColor: "#30363d", color: "#e6edf3" }
+    : {};
+
   return (
-    <div className="container" style={dispMode}>
-      <h1 className="my-3">About</h1>
-      <div className="accordion" id="accordionExample">
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseOne"
-              aria-expanded="true"
-              aria-controls="collapseOne"
-              style={dispMode}
-            >
-              Accordion Item #1
-            </button>
-          </h2>
-          <div
-            id="collapseOne"
-            className="accordion-collapse collapse show"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body" style={dispMode}>
-              <strong>This is the first item's accordion body.</strong> It is
-              shown by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
+    <div
+      className="py-4"
+      style={{ color: isDark ? "#e6edf3" : "#1a1a2e", maxWidth: 1000, margin: "0 auto" }}
+    >
+      <h4 className="fw-bold mb-1">About TextUtils</h4>
+      <p className="text-secondary mb-4">
+        A free, client-side text manipulation toolkit. All processing happens in your
+        browser — nothing is ever sent to a server.
+      </p>
+
+      <div className="row g-3">
+        {FEATURES.map(({ title, color, items }) => (
+          <div key={title} className="col-12 col-sm-6 col-lg-4">
+            <div className="card h-100" style={cardStyle}>
+              <div className="card-body">
+                <h6 className="card-title d-flex align-items-center gap-2 mb-3">
+                  <span className={`badge bg-${color}`} style={{ fontSize: "0.65rem" }}>
+                    {title}
+                  </span>
+                </h6>
+                <ul className="list-unstyled mb-0 small">
+                  {items.map((item) => (
+                    <li key={item} className="mb-1">
+                      <span className="text-secondary me-1">›</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseTwo"
-              aria-expanded="false"
-              aria-controls="collapseTwo"
-              style={dispMode}
-            >
-              Accordion Item #2
-            </button>
-          </h2>
-          <div
-            id="collapseTwo"
-            className="accordion-collapse collapse"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body" style={dispMode}>
-              <strong>This is the second item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
-        <div className="accordion-item">
-          <h2 className="accordion-header">
-            <button
-              className="accordion-button collapsed"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseThree"
-              aria-expanded="false"
-              aria-controls="collapseThree"
-              style={dispMode}
-            >
-              Accordion Item #3
-            </button>
-          </h2>
-          <div
-            id="collapseThree"
-            className="accordion-collapse collapse"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body " style={dispMode}>
-              <strong>This is the third item's accordion body.</strong> It is
-              hidden by default, until the collapse plugin adds the appropriate
-              classes that we use to style each element. These classes control
-              the overall appearance, as well as the showing and hiding via CSS
-              transitions. You can modify any of this with custom CSS or
-              overriding our default variables. It's also worth noting that just
-              about any HTML can go within the <code>.accordion-body</code>,
-              though the transition does limit overflow.
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
-      <div className="container my-3">
-        <button
-          type="button"
-          className="btn btn-primary" /*onClick={toggleMode} */
-        >
-          {modeBtn}
-        </button>
+
+      <div
+        className="card mt-4"
+        style={cardStyle}
+      >
+        <div className="card-body small text-secondary">
+          <strong style={{ color: isDark ? "#e6edf3" : "#1a1a2e" }}>Stats tracked:</strong>{" "}
+          Word count · Character count (with and without spaces) · Line count · Sentence count ·
+          Paragraph count · Unique word count · Average word length · Estimated reading time ·
+          Estimated speaking time
+        </div>
       </div>
     </div>
   );
